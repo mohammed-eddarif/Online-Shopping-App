@@ -11,11 +11,13 @@
         <module name="inventory-service" />
         <module name="order-service" />
         <module name="discovery-server" />
+        <module name="Api-Gateway" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Api-Gateway" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="inventory-service" options="-parameters" />
       <module name="order-service" options="-parameters" />
