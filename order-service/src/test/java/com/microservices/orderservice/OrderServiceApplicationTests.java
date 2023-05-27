@@ -32,8 +32,6 @@ class OrderServiceApplicationTests {
 	public void givenOrder_whenPlaceOrder_thenOrderIdReturned(){
 		//given : setup or predictions
 
-
-
 		//when : action
 
 		//then : verify the output
