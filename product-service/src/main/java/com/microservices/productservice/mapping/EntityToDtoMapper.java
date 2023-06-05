@@ -1,4 +1,4 @@
-package com.microservices.productservice;
+package com.microservices.productservice.mapping;
 
 
 import com.microservices.productservice.dto.ProductDto;
@@ -9,8 +9,6 @@ public class EntityToDtoMapper {
     private static final ModelMapper modelMapper = new ModelMapper();
 
     public static ProductDto mapEntityToDto(Product product) {
-        if(product != null){
         return modelMapper.map(product, ProductDto.class);
-        }else return null;
     }
 }
