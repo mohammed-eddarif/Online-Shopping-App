@@ -14,7 +14,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @SpringBootTest
 @Testcontainers
 @AutoConfigureMockMvc
-class OrderServiceApplicationTests {
+class OrderServiceImplApplicationTests {
 
 	// given/when/then format  BDD style
 	@Container

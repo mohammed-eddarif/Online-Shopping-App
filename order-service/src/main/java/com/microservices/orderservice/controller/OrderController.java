@@ -1,7 +1,7 @@
 package com.microservices.orderservice.controller;
 
 import com.microservices.orderservice.request.OrderRequest;
-import com.microservices.orderservice.service.OrderService;
+import com.microservices.orderservice.service.impl.OrderServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final OrderService orderService;
+    private final OrderServiceImpl orderServiceImpl;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public String placeOrder(@RequestBody OrderRequest orderRequest){
-        orderService.placeOrder(orderRequest);
+        orderServiceImpl.placeOrder(orderRequest);
         return "Order Passed Successfully";
     }
 }

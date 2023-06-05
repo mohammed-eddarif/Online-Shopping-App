@@ -1,7 +1,7 @@
 package com.microservices.inventoryservice.controller;
 
 import com.microservices.inventoryservice.response.InventoryResponse;
-import com.microservices.inventoryservice.service.InventoryService;
+import com.microservices.inventoryservice.service.impl.InventoryServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class InventoryController {
 
-    private final InventoryService inventoryService;
+    private final InventoryServiceImpl inventoryServiceImpl;
 
     // there are 2 extract values from http request :
 
@@ -25,6 +25,6 @@ public class InventoryController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<InventoryResponse> isInStock(@RequestParam List<String> skuCode){
-        return inventoryService.isInStock(skuCode);
+        return inventoryServiceImpl.isInStock(skuCode);
     }
 }
