@@ -1,7 +1,7 @@
 package com.microservices.productservice.service.impl;
 
 import com.microservices.productservice.dto.ProductDto;
-import com.microservices.productservice.response.ProductResponse;
+import com.microservices.productservice.dto.ProductResponseDto;
 import com.microservices.productservice.model.Product;
 import com.microservices.productservice.repository.ProductRepository;
 import com.microservices.productservice.service.ProductService;
@@ -49,13 +49,13 @@ public class ProductServiceImpl implements ProductService {
         return productDto1;
     }
 
-    public List<ProductResponse> getAllProducts() {
+    public List<ProductResponseDto> getAllProducts() {
         List<Product> products = productRepository.findAll();
         return products.stream().map(this::mapToProductResponse).toList();
     }
 
-    private ProductResponse mapToProductResponse(Product product) {
-        return ProductResponse.builder()
+    private ProductResponseDto mapToProductResponse(Product product) {
+        return ProductResponseDto.builder()
                 .id(product.getId())
                 .name(product.getName())
                 .description(product.getDescription())

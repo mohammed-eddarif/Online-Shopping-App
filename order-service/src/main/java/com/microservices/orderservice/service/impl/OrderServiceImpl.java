@@ -8,6 +8,7 @@ import com.microservices.orderservice.request.OrderRequest;
 import com.microservices.orderservice.response.InventoryResponse;
 import com.microservices.orderservice.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -21,7 +22,8 @@ import java.util.UUID;
 @Transactional
 public class OrderServiceImpl implements OrderService{
 
-    private final OrderRepository orderRepository;
+    @Autowired
+    private OrderRepository orderRepository;
     private final WebClient.Builder webClientBuilder;
 
     public void placeOrder(OrderRequest orderRequest) {

@@ -1,4 +1,4 @@
-package com.microservices.productservice.response;
+package com.microservices.productservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProductResponse {
-    private String id;
+public class ProductRequestDto {
     private String name;
     private String description;
     private String price;

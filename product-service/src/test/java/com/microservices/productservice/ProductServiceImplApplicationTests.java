@@ -1,8 +1,8 @@
 package com.microservices.productservice;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.microservices.productservice.dto.ProductRequestDto;
 import com.microservices.productservice.repository.ProductRepository;
-import com.microservices.productservice.request.ProductRequest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +45,8 @@ class ProductServiceImplApplicationTests {
 
 	@Test
 	void shouldCreateProduct() throws Exception {
-		ProductRequest productRequest =	getProductRequest();
-		String productRequestString =objectMapper.writeValueAsString(productRequest);
+		ProductRequestDto productRequestDto =	getProductRequest();
+		String productRequestString =objectMapper.writeValueAsString(productRequestDto);
 
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/api/product")
@@ -58,8 +58,8 @@ class ProductServiceImplApplicationTests {
 		Assertions.assertEquals(1, productRepository.findAll().size());
 	}
 
-	private ProductRequest getProductRequest() {
-		return ProductRequest.builder()
+	private ProductRequestDto getProductRequest() {
+		return ProductRequestDto.builder()
 				.name("iphone 13")
 				.description("iphone 13 desc")
 				.price(String.valueOf(BigDecimal.valueOf(1200)))

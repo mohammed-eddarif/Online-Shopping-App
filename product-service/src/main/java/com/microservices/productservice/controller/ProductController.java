@@ -1,8 +1,8 @@
 package com.microservices.productservice.controller;
 
 import com.microservices.productservice.dto.ProductDto;
-import com.microservices.productservice.request.ProductRequest;
-import com.microservices.productservice.response.ProductResponse;
+import com.microservices.productservice.dto.ProductRequestDto;
+import com.microservices.productservice.dto.ProductResponseDto;
 import com.microservices.productservice.service.impl.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +22,13 @@ public class ProductController {
 
 //    @PostMapping
 //    @ResponseStatus(HttpStatus.CREATED)
-//    public ProductResponse createProduct(@RequestBody ProductRequest productRequest){
+//    public ProductResponseDto createProduct(@RequestBody ProductRequestDto productRequest){
 //        ProductDto productDto = new ProductDto();
 //        BeanUtils.copyProperties(productRequest, productDto);
 //
 //        ProductDto productDto1 = productService.createProduct(productDto);
 //
-//        ProductResponse productResponse = new ProductResponse().builder()
+//        ProductResponseDto productResponse = new ProductResponseDto().builder()
 //                .name(productDto1.getName())
 //                .description(productDto1.getDescription())
 //                .price(productDto1.getPrice())
@@ -39,24 +39,24 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductRequest productRequest) {
+    public ResponseEntity<ProductResponseDto> createProduct(@RequestBody ProductRequestDto productRequestDto) {
         try {
             ProductDto productDto = new ProductDto().builder()
-                    .name(productRequest.getName())
-                    .description(productRequest.getDescription())
-                    .price(productRequest.getPrice())
+                    .name(productRequestDto.getName())
+                    .description(productRequestDto.getDescription())
+                    .price(productRequestDto.getPrice())
                     .build();
 
             ProductDto createdProductDto = productServiceImpl.createProduct(productDto);
 
-            ProductResponse productResponse = new ProductResponse().builder()
+            ProductResponseDto productResponseDto = new ProductResponseDto().builder()
                     .name(createdProductDto.getName())
                     .description(createdProductDto.getDescription())
                     .price(createdProductDto.getPrice())
                     .build();
 
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(productResponse);
+                    .body(productResponseDto);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(null);
@@ -66,7 +66,7 @@ public class ProductController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<ProductResponse> getAllProducts() {
+    public List<ProductResponseDto> getAllProducts() {
         return productServiceImpl.getAllProducts();
     }
 }

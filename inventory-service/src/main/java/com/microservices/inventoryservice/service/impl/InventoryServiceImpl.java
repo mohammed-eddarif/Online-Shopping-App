@@ -4,6 +4,7 @@ import com.microservices.inventoryservice.repository.InventoryRepository;
 import com.microservices.inventoryservice.response.InventoryResponse;
 import com.microservices.inventoryservice.service.InventoryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,7 +14,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class InventoryServiceImpl implements InventoryService{
 
-    private final InventoryRepository inventoryRepository;
+    @Autowired
+    private InventoryRepository inventoryRepository;
 
     @Transactional(readOnly = true)
     public List<InventoryResponse> isInStock(List<String> skucode) {
